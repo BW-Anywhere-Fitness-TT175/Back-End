@@ -1,0 +1,19 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "BW Anywhere Fitness TT 175",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BW-Anywhere-Fitness-TT175/Back-End.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BW-Anywhere-Fitness-TT175/Back-End/issues"
+  },
+  "homepage": "https://github.com/BW-Anywhere-Fitness-TT175/Back-End#readme"
+}
