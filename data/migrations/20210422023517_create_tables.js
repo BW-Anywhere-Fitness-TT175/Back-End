@@ -37,8 +37,9 @@ exports.up = function (knex) {
     .createTable("classes", (tbl) => {
       tbl.increments();
       tbl.text("className", 20).notNullable().unique();
-      tbl.time("startTime").notNullable();
-      tbl.text("duration").notNullable();
+      tbl.text("startTime").notNullable();
+      tbl.integer("class_date").notNullable();
+      tbl.decimal("duration").notNullable();
       tbl.integer("intensityLevel").notNullable();
       tbl.text("location", 20).notNullable();
       tbl.integer("registeredClients"); // NOTE Once registeredClients is equal to maxClassSize registration closes
