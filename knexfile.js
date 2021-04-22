@@ -19,7 +19,7 @@ module.exports = {
     },
   },
   testing: {
-    client: sqlite3,
+    client: "sqlite3",
     useNullAsDefault: true,
     migrations: {
       directory: "./data/migrations",
