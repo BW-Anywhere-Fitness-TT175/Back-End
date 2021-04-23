@@ -14,7 +14,7 @@ exports.up = function (knex) {
       tbl.text("email").notNullable().unique();
       tbl.text("password", 10).notNullable();
       tbl
-        .integer("roleId")
+        .integer("role_id")
         .unsigned()
         .notNullable()
         .references("roles.id")
