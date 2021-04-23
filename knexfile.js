@@ -1,25 +1,11 @@
 const pgConnection = process.env.DATABASE_URL;
+
 module.exports = {
   development: {
     client: "sqlite3",
-    useNullAsDefault: true,
-    migrations: {
-      directory: "./data/migrations",
-    },
-    seeds: {
-      directory: "./data/seeds",
-    },
     connection: {
       filename: "./data/fitness.db3",
     },
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done)
-      },
-    },
-  },
-  testing: {
-    client: "sqlite3",
     useNullAsDefault: true,
     migrations: {
       directory: "./data/migrations",
@@ -27,15 +13,32 @@ module.exports = {
     seeds: {
       directory: "./data/seeds",
     },
-    connection: {
-      filename: "./data/testing.db3",
-    },
     pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done);
+      afterCreate: (conn, cb) => {
+        conn.run("PRAGMA foreign_keys = ON", cb);
       },
     },
   },
+
+  testing: {
+    client: "sqlite3",
+    connection: {
+      filename: "./data/testing.db3",
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: "./data/migrations",
+    },
+    seeds: {
+      directory: "./data/seeds",
+    },
+    pool: {
+      afterCreate: (conn, cb) => {
+        conn.run("PRAGMA foreign_keys = ON", cb);
+      },
+    },
+  },
+
   production: {
     client: "pg",
     connection: {
