@@ -10,4 +10,13 @@ router.get("/categories", async (req, res, next) => {
   }
 });
 
+router.get("/roles", async (req, res, next) => {
+  try {
+    const roles = await Helpers.getRoles();
+    res.status(200).json(roles);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
