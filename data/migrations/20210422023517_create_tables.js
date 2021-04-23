@@ -1,16 +1,16 @@
 exports.up = function (knex) {
   return knex.schema
     .createTable("roles", (tbl) => {
-      tbl.increments();
+      tbl.increments("id");
       tbl.text("role_name").notNullable();
     })
     .createTable("class_categories", (tbl) => {
-      tbl.increments();
+      tbl.increments("id");
       tbl.text("cat_name", 24).notNullable().unique();
       tbl.integer("number_visits", 10).notNullable();
     })
     .createTable("users", (tbl) => {
-      tbl.increments();
+      tbl.increments("id");
       tbl.text("email").notNullable().unique();
       tbl.text("password", 10).notNullable();
       tbl
@@ -22,7 +22,7 @@ exports.up = function (knex) {
         .onUpdate("CASCADE");
     })
     .createTable("profiles", (tbl) => {
-      tbl.increments();
+      tbl.increments("id");
       tbl.text("first_name", 20).notNullable();
       tbl.text("last_name", 20).notNullable();
       tbl.text("phone_number", 10).notNullable();
@@ -35,7 +35,7 @@ exports.up = function (knex) {
         .onUpdate("CASCADE");
     })
     .createTable("classes", (tbl) => {
-      tbl.increments();
+      tbl.increments("id");
       tbl.text("class_name", 20).notNullable().unique();
       tbl.text("start_time").notNullable();
       tbl.integer("class_date").notNullable();
