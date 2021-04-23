@@ -1,12 +1,32 @@
 const db = require("../../data/dbConfig.js");
 
 function getCategories() {
-    return db('class_categories');
+  return db("class_categories");
 }
 
+function getRoles() {
+  return db("roles");
+}
 
-
+function getClasses() {
+  return db
+    .select(
+      "c.class_name",
+      "cc.cat_name as class type",
+      "c.start_time as start time",
+      "c.class_date as date",
+      "c.duration",
+      "c.intensity_level as intensity",
+      "c.location",
+      "c.max_class_size as class size",
+      "c.registered_students as number of registrants"
+    )
+    .from("classes as c")
+    .join("class_categories as cc", "c.category_id", "=", "cc.id");
+}
 
 module.exports = {
-    getCategories,
-}
+  getCategories,
+  getRoles,
+  getClasses,
+};
