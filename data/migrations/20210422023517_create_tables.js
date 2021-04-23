@@ -21,7 +21,7 @@ exports.up = function (knex) {
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
     })
-    .createTable("profile", (tbl) => {
+    .createTable("profiles", (tbl) => {
       tbl.increments();
       tbl.text("first_name", 20).notNullable();
       tbl.text("last_name", 20).notNullable();
@@ -61,20 +61,20 @@ exports.up = function (knex) {
     })
     .createTable("users_classes", (tbl) => {
       tbl
-        .integer("class_id")
-        .unsigned()
-        .notNullable()
-        .references("classes.id")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
-      tbl
         .integer("user_id")
         .unsigned()
         .notNullable()
         .references("users.id")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
-      tbl.primary(["class_id", "user_id"]);
+      tbl
+        .integer("class_id")
+        .unsigned()
+        .notNullable()
+        .references("classes.id")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+      tbl.primary(["user_id", "class_id"]);
     });
 };
 
@@ -82,7 +82,7 @@ exports.down = function (knex) {
   return knex.schema
     .dropTableIfExists("users_classes")
     .dropTableIfExists("classes")
-    .dropTableIfExists("profile")
+    .dropTableIfExists("profiles")
     .dropTableIfExists("users")
     .dropTableIfExists("class_categories")
     .dropTableIfExists("roles");
