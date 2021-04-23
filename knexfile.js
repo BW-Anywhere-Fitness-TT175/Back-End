@@ -10,7 +10,7 @@ module.exports = {
       directory: "./data/seeds",
     },
     connection: {
-      filename: "./data.fitness.db3",
+      filename: "./data/fitness.db3",
     },
     pool: {
       afterCreate: (conn, done) => {
