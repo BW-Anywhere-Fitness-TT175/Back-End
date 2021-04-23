@@ -38,7 +38,7 @@ exports.up = function (knex) {
       tbl.increments("id");
       tbl.text("class_name", 20).notNullable().unique();
       tbl.text("start_time").notNullable();
-      tbl.integer("class_date").notNullable();
+      tbl.string("class_date").notNullable();
       tbl.decimal("duration").notNullable();
       tbl.integer("intensity_level").notNullable();
       tbl.text("location", 20).notNullable();
