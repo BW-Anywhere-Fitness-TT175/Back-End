@@ -86,7 +86,7 @@ request:`n/a`
 response: 
 ```
 {
-"class_name": "Yoga by Aja",
+"class name": "Yoga by Aja",
 "class type": "yoga",
 "start time": "11:00 AM",
 "date": "5/1/2021",
@@ -98,7 +98,7 @@ response:
 "instructor": "aja"
 },
 {
-"class_name": "Spinning by Aja",
+"class name": "Spinning by Aja",
 "class type": "spinning",
 "start time": "12:00 AM",
 "date": "6/5/2021",
@@ -110,7 +110,7 @@ response:
 "instructor": "aja"
 },
 {
-"class_name": "Aerobics by Sarah",
+"class name": "Aerobics by Sarah",
 "class type": "aerobics",
 "start time": "5:00 PM",
 "date": "5/13/2021",
@@ -122,7 +122,7 @@ response:
 "instructor": "sarah"
 },
 {
-"class_name": "Zumba by Chad",
+"class name": "Zumba by Chad",
 "class type": "zumba",
 "start time": "2:00 PM",
 "date": "7/1/2021",
