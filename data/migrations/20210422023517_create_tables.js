@@ -13,8 +13,7 @@ exports.up = function (knex) {
       tbl.increments("id");
       tbl.text("email").notNullable().unique();
       tbl.text("password", 10).notNullable();
-      tbl.text("first_name", 20).notNullable();
-      tbl.text("last_name", 20).notNullable();
+      tbl.text("name", 40).notNullable();
       tbl.text("phone_number", 10).notNullable();
       tbl
         .integer("role_id")

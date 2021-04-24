@@ -5,9 +5,11 @@ const cors = require("cors");
 const server = express();
 const helpersRouter = require("./helpers/helpersRouter.js");
 
+
 server.use(cors(), express.json(), helmet());
 
 server.use("/api", helpersRouter);
+
 
 server.get("/", (req, res, next) => {
   res.status(200).json({ message: "api up" });
