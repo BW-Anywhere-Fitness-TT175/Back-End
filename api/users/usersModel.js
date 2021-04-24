@@ -11,9 +11,31 @@ async function getUsersById(id) {
   };
 }
 
+//NOTE function used to router.put to allow user to change password
+function getFullUserDetails(id) {
+  return db("users").first().where({ "users.id": id });
+}
+
+function getUserByEmail(email) {
+  return db("users").first().where({ email });
+}
+
+async function addUser(newUser) {
+  const [newId] = await db("users").insert(newUser, ["id"]);
+  return getUsersById(newId.id ?? newId);
+}
+
+function editUser(id, changedUser) {
+  return db("users").where({ id }).update(changedUser);
+}
+
 // NOTE allows a teacher to create a class
 async function addClass(newClass) {}
 
 module.exports = {
   getUsersById,
+  getFullUserDetails,
+  getUserByEmail,
+  addUser,
+  editUser,
 };

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("./usersModel.js");
+const Classes = require("../classes/classesModel.js");
 const mw = require("../middleware/middleware.js");
 
 router.get("/", (req, res, next) => {
