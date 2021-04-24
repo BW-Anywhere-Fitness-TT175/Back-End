@@ -1,9 +1,9 @@
-const router = require('express').Router();
-const Classes = require('./classesModel.js');
+const router = require("express").Router();
+const Classes = require("./classesModel.js");
 
 router.get("/", async (req, res, next) => {
   try {
-    const classes = await Helpers.getClasses();
+    const classes = await Classes.getClasses();
     res.status(200).json(classes);
   } catch (err) {
     err.message = "Server failed to get classes";
