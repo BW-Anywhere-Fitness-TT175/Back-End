@@ -11,7 +11,7 @@ function getRoles() {
 function getClasses() {
   return db
     .select(
-      "c.class_name",
+      "c.class_name as class name",
       "cc.cat_name as class type",
       "c.start_time as start time",
       "c.class_date as date",
