@@ -19,10 +19,12 @@ function getClasses() {
       "c.intensity_level as intensity",
       "c.location",
       "c.max_class_size as class size",
-      "c.registered_students as number of registrants"
+      "c.registered_students as number of registrants",
+      "u.first_name as instructor"
     )
     .from("classes as c")
-    .join("class_categories as cc", "c.category_id", "=", "cc.id");
+    .join("class_categories as cc", "c.category_id", "=", "cc.id")
+    .join("users as u", "u.id", "=", "c.instructor_id");
 }
 
 module.exports = {
