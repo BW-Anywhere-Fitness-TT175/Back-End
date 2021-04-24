@@ -7,7 +7,13 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", mw.checkUserId, (req, res, next) => {
-  res.status(200).json(user);
+  try {
+    const user = req.user;
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
 });
 
 module.exports = router;
