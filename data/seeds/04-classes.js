@@ -15,7 +15,7 @@ exports.seed = function (knex) {
           location: "Los Angeles",
           registered_students: 8,
           max_class_size: 20,
-          instructor_id: 1,
+          instructor_id: 5,
           category_id: 1,
         },
         {
@@ -28,12 +28,12 @@ exports.seed = function (knex) {
           location: "Phoenix",
           registered_students: 5,
           max_class_size: 10,
-          instructor_id: 1,
+          instructor_id: 5,
           category_id: 2,
         },
         {
           id: 3,
-          class_name: "Aerobics by Aja",
+          class_name: "Aerobics by Sarah",
           start_time: "5:00 PM",
           class_date: "5/13/2021",
           duration: 3.0, // hours
@@ -46,7 +46,7 @@ exports.seed = function (knex) {
         },
         {
           id: 4,
-          class_name: "Zumba by Aja",
+          class_name: "Zumba by Chad",
           start_time: "2:00 PM",
           class_date: "7/1/2021",
           duration: 4.0, // hours
@@ -54,7 +54,7 @@ exports.seed = function (knex) {
           location: "Baltimore",
           registered_students: 7,
           max_class_size: 15,
-          instructor_id: 2,
+          instructor_id: 1,
           category_id: 4,
         },
       ]);
