@@ -39,14 +39,14 @@ request: `n/a`
 response: 
 
 ```
-`{
+{
 id: 1,
 role_name: "instructor"
 },
 {
 id: 2,
 role_name: "student"
-}`
+}
 ```
 
 ### -  GET "/api/categories"
@@ -55,7 +55,7 @@ request:`n/a`
 
 response: 
 ```
-`{
+{
 id: 1,
 cat_name: "yoga",
 number_visits: 5
@@ -74,7 +74,7 @@ number_visits: 8
 id: 4,
 cat_name: "zumba",
 number_visits: 7
-}`
+}
 ```
 
 ### LIST OF AVAILABLE CLASSES
@@ -85,7 +85,7 @@ request:`n/a`
 
 response: 
 ```
-`{
+{
 "class_name": "Yoga by Aja",
 "class type": "yoga",
 "start time": "11:00 AM",
@@ -132,7 +132,7 @@ response:
 "class size": 15,
 "number of registrants": 7,
 "instructor": "chad"
-}`
+}
 ```
 
 📝 notes:
