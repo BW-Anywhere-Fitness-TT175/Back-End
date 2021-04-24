@@ -15,5 +15,5 @@ function getUsersById(id) {
 async function addClass(newClass) {}
 
 module.exports = {
-    getUsersById,
+  getUsersById,
 };
