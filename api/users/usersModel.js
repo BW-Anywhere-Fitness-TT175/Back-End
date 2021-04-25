@@ -44,9 +44,6 @@ module.exports = {
   editUser,
 };
 
-
-
-
 function getClassByUserId(userId) {
   return db("user_classes")
     .join("users", "users.id", "=", "user_classes.user_id")
