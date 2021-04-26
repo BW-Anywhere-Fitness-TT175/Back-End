@@ -19,7 +19,7 @@ function getFullUserDetails(id) {
 // NOTE to be used in the AUTH router
 // POST /api/auth/login
 function findBy(filter) {
-  return db("users").first().where(filter);
+  return db("users").where(filter).orderBy("id");
 }
 
 // NOTE to be used in the AUTH router

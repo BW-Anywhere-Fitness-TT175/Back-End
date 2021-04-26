@@ -31,10 +31,21 @@ router.post(
   async (req, res, next) => {
     const { email, password } = req.body;
     try {
-      const user = await Users.findBy({ email });
+      const user = await Users.findBy({ email }).first();
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
-        res.status(200).json({ user, token });
+        res
+          .status(200)
+          .json({
+            message: "Login successful!",
+            token,
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              phone_number: user.phone_number,
+            },
+          });
       } else {
         res.status(401).json({ message: "invalid credentials!" });
       }
