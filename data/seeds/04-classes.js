@@ -13,7 +13,7 @@ exports.seed = function (knex) {
           duration: 1.0, // hours
           intensity_level: 3,
           location: "Los Angeles",
-          registered_students: 8,
+          registered_students: 1,
           max_class_size: 20,
           instructor_id: 5,
           category_id: 1,
@@ -26,7 +26,7 @@ exports.seed = function (knex) {
           duration: 2.0, // hours
           intensity_level: 3,
           location: "Phoenix",
-          registered_students: 5,
+          registered_students: 1,
           max_class_size: 10,
           instructor_id: 5,
           category_id: 2,
@@ -39,7 +39,7 @@ exports.seed = function (knex) {
           duration: 3.0, // hours
           intensity_level: 3,
           location: "Cleveland",
-          registered_students: 10,
+          registered_students: 1,
           max_class_size: 30,
           instructor_id: 2,
           category_id: 3,
@@ -52,7 +52,7 @@ exports.seed = function (knex) {
           duration: 4.0, // hours
           intensity_level: 5,
           location: "Baltimore",
-          registered_students: 7,
+          registered_students: 1,
           max_class_size: 15,
           instructor_id: 1,
           category_id: 4,
