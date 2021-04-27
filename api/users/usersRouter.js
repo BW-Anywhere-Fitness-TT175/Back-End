@@ -2,9 +2,9 @@ const router = require("express").Router();
 const User = require("./usersModel.js");
 const Classes = require("../classes/classesModel.js");
 const mw = require("../middleware/middleware.js");
-const { JWT_SECRET } = require('../secrets/index.js')
-const jwt = require('jsonwebtoken');
-const bycrypt = require('bcryptjs')
+const { JWT_SECRET } = require("../secrets/index.js");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 router.get("/", (req, res, next) => {
   res.status(200).json({ users: "endpoint up" });
@@ -20,7 +20,7 @@ router.get("/:id", mw.checkUserId, mw.restricted, (req, res, next) => {
   }
 });
 
-router.put("/:id",mw.restricted, async (req, res, next) => {
+router.put("/:id", mw.restricted, async (req, res, next) => {
   const { id } = req.params;
   const changes = req.body;
   try {
@@ -36,24 +36,29 @@ router.put("/:id",mw.restricted, async (req, res, next) => {
   }
 });
 
-router.post("/:id/addClass", mw.checkUserId, mw.restricted, async (req, res, next) => {
-  const user = req.user;
-  const addedClass = req.body;
-  const role = req.decodedToken.role_name;
-  
-  try {
-    if (role !== 1) {
-      res
-        .status(403)
-        .json({ message: "You must be an instructor to add a new class" });
-    } else {
-      const newClass = await Classes.addClass(addedClass);
-      res.status(201).json(newClass);
+router.post(
+  "/:id/addClass",
+  mw.checkUserId,
+  mw.restricted,
+  async (req, res, next) => {
+    const user = req.user;
+    const addedClass = req.body;
+    const role = req.decodedToken.role_name;
+
+    try {
+      if (role !== 1) {
+        res
+          .status(403)
+          .json({ message: "You must be an instructor to add a new class" });
+      } else {
+        const newClass = await Classes.addClass(addedClass);
+        res.status(201).json(newClass);
+      }
+    } catch (err) {
+      next(err);
     }
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 router.post(
   "/register",
@@ -64,7 +69,7 @@ router.post(
     try {
       const hash = bcrypt.hashSync(credentials.password, 10);
       credentials.password = hash;
-      const user = await Users.addUser(credentials);
+      const user = await User.addUser(credentials);
       res.status(201).json({ message: "User registered successfully!" });
     } catch (err) {
       err.message = "Server failed to register user";
@@ -80,7 +85,7 @@ router.post(
   async (req, res, next) => {
     const { email, password } = req.body;
     try {
-      const user = await Users.findBy({ email }).first();
+      const user = await User.findBy({ email }).first();
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
         res.status(200).json({
