@@ -33,17 +33,23 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-
-
-// router.post("/", async (req, res, next) => {
-//   const creds = req.body;
-//   try {
-//     const newUser = await User.addUser(creds);
-//     res.status(201).json(newUser);
-//   } catch (err) {
-//     err.message = "server failed to add new user";
-//     next(err);
-//   }
-// });
+router.post("/:id/addClass", mw.checkUserId, async (req, res, next) => {
+  const user = req.user;
+  const addedClass = req.body;
+  const role = req.decodedToken.role_name;
+  
+  try {
+    if (role !== 1) {
+      res
+        .status(403)
+        .json({ message: "You must be an instructor to add a new class" });
+    } else {
+      const newClass = await Classes.addClass(addedClass);
+      res.status(201).json(newClass);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
