@@ -25,16 +25,17 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // NOTE get a list of all users per class - not restricted
-// router.get("/:classId/users", async (req, res, next) => {
-//   const { classId } = req.params;
-//   try {
-//     const list = await Classes.getUsersByClass(classId);
-//     res.status(200).json(list);
-//   } catch (err) {
-//     err.message = "Server failed to get class with registered students";
-//     console.log(err);
-//     next(err);
-//   }
-// });
+router.get("/:classId/users", async (req, res, next) => {
+  const { classId } = req.params;
+
+  try {
+    const list = await Classes.getUsersByClass(classId);
+    res.status(200).json(list);
+  } catch (err) {
+    err.message = "Server failed to get class with registered students";
+    console.log(err);
+    next(err);
+  }
+});
 
 module.exports = router;

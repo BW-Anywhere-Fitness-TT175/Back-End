@@ -92,54 +92,43 @@ function deleteClass(id) {
 // NOTE returns a list of students signed up for a class
 
 //GET /api/classes/:id/users
-/* async function getUsersByClass(classId) {
-const classId = await db("user_classes")
-  .where({ class_id: id })
-  .join("users", "users.id", "user_classes.user_id")
-  .join("classes", "classes.id", "=", "user_classes.class_id")
-  .join("roles", "roles.id", "=", "users.role_id")
-  .select(
-    "user_classes.user_id",
-    "users.username",
-    "roles.role",
-    "users.email",
-    "classes.id as classes_id"
-  )
-  .orderBy("user_classes.user_id");
-  return getClassById(res);
-} */
-// const res = db("users_classes as uc")
-//   .leftJoin("classes as c", "uc.class_id", "c.id")
-//   .leftJoin("users as u", "u.id", "uc.users_id")
-//   .where({ "uc.class_id": classId })
-//   .select(
-//     "c.id as class_id",
-//     "c.class_name",
-//     "c.category_id as type",
-//     "uc.user_id as user_id",
-//     "u.name as user_name",
-//     "u.email as user_email",
-//     "u.phone_number as user_phone_number"
-//   )
-//   .orderBy("c.id")
-//   .groupBy("c.id")
-//   .first();
-// const newObj = {
-//   class_id: res.id,
-//   name: res.class_name,
-//   type: res.type,
-//   students: {
-//     name: res.user_name,
-//     email: res.user_email,
-//     phone: res.user_phone_number,
-//   },
-// };
-// return newObj;
+async function getUsersByClass(classId) {
+  const res = await db("users_classes as uc")
+    .join("classes as c", "uc.class_id", "c.id")
+    .join("users as u", "u.id", "uc.user_id")
+    .where("uc.class_id", classId)
+    .select(
+      "c.id as class_id",
+      "c.class_name",
+      "c.category_id as type",
+      "uc.user_id as user_id",
+      "u.name as user_name",
+      "u.email as user_email",
+      "u.phone_number as user_phone_number"
+    )
+    .orderBy("c.id");
+
+  const newObj = {
+    class_id: res[0].class_id,
+    name: res[0].class_name,
+    type: res[0].type,
+    students: res.map((stu) => {
+      return {
+        id: stu.user_id,
+        name: stu.user_name,
+        email: stu.user_email,
+        phone: stu.user_phone_number,
+      };
+    }),
+  };
+  return newObj;
+}
 
 module.exports = {
   getClasses,
   getClassById,
   addClass,
   editClass,
-  deleteClass, 
+  deleteClass,
+  getUsersByClass,
 };
