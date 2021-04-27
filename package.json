@@ -10,9 +10,10 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "migrateh":"heroku run knex migrate:latest -a anywhere-fitness-tt-175",
-    "rollbackh":"heroku run knex migrate:rollback -a anywhere-fitness-tt-175",
-    "seedh":"heroku run knex seed:run -a anywhere-fitness-tt-175"
+    "migrateh": "heroku run knex migrate:latest -a anywhere-fitness-tt-175",
+    "rollbackh": "heroku run knex migrate:rollback -a anywhere-fitness-tt-175",
+    "seedh": "heroku run knex seed:run -a anywhere-fitness-tt-175",
+    "log": "heroku logs --tail -a anywhere-fitness-tt-175"
   },
   "repository": {
     "type": "git",
