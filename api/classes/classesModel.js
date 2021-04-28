@@ -47,7 +47,7 @@ function getClassById(id) {
 // POST /api/users/:id/classes
 async function addClass(newClass) {
   const [newId] = await db("classes").insert(newClass).returning("id");
-  return getClassById(newId.id ?? newId);
+  return getClassById(newId);
 }
 
 // NOTE edits a class that is already available and returns it
