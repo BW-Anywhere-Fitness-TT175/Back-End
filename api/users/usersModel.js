@@ -25,8 +25,10 @@ function findBy(filter) {
 // NOTE to be used in the AUTH router
 // POST /api/auth/register
 async function addUser(newUser) {
-  const [newId] = await db("users").insert(newUser, ["newId"]).returning("*");
-  return getUsersById(newId.id ?? newId);
+  const [newId] = await db("users")
+    .insert(newUser)
+    .returning(["id", "email", "name", "phone_number", "role_id"]);
+  return getUsersById(newId);
 }
 
 function editUser(id, changedUser) {
