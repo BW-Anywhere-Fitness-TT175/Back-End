@@ -46,7 +46,7 @@ function getClassById(id) {
 // NOTE this can only be done by user with role id of 1 = instructor
 // POST /api/users/:id/classes
 async function addClass(newClass) {
-  const [newId] = await db("classes").insert(newClass, [newId]);
+  const [newId] = await db("classes").insert(newClass, [newId]).returning("id");
   return getClassById(newId.id ?? newId);
 }
 
