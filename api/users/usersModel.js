@@ -28,6 +28,7 @@ async function addUser(newUser) {
   const [newId] = await db("users")
     .insert(newUser)
     .returning(["id", "email", "name", "phone_number", "role_id"]);
+  console.log(newId);
   return getUsersById(newId);
 }
 
