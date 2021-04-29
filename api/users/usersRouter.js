@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
   res.status(200).json({ users: "endpoint up" });
 });
 
-// ✔️
+// ✔️ // allows a user to get their info
 router.get("/:id", mw.checkUserId, mw.restricted, (req, res, next) => {
   try {
     const user = req.user;
@@ -21,7 +21,7 @@ router.get("/:id", mw.checkUserId, mw.restricted, (req, res, next) => {
   }
 });
 
-// ✔️
+// ✔️ // Allows a user to update their info
 router.put("/:id", mw.restricted, async (req, res, next) => {
   const { id } = req.params;
   const changes = req.body;
@@ -38,7 +38,7 @@ router.put("/:id", mw.restricted, async (req, res, next) => {
   }
 });
 
-// NOTE Allows a User to add a new class to the database
+// NOTE Allows an Instructor to add a new class to the database
 // ✔️
 router.post(
   "/:id/class",
@@ -63,6 +63,11 @@ router.post(
   }
 );
 
+// Allow an Instructor to see a specific class they've created
+router.get("/:id/class/:classId");
+
+// Allow an Instructor to edit a class they've created
+router.put("");
 
 // ✔️
 router.post(
@@ -75,7 +80,16 @@ router.post(
       const hash = bcrypt.hashSync(credentials.password, 10);
       credentials.password = hash;
       const user = await User.addUser(credentials);
-      res.status(201).json({ message: "User registered successfully!" });
+      res.status(201).json({
+        message: "User registered successfully!",
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          phone_number: user.phone_number,
+          role: user.role_id,
+        },
+      });
     } catch (err) {
       err.message = "Server failed to register user";
       next(err);
