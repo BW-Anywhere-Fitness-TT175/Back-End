@@ -25,6 +25,7 @@ function getClasses() {
 function getClassById(id) {
   return db
     .select(
+      "c.id",
       "c.class_name as class name",
       "cc.cat_name as class type",
       "c.start_time as start time",

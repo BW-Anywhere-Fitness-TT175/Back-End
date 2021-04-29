@@ -36,15 +36,15 @@ router.put("/:id", mw.restricted, async (req, res, next) => {
   }
 });
 
+// NOTE Allows a User to add a new class to the database
 router.post(
-  "/:id/addClass",
+  "/:id/class",
   mw.checkUserId,
   mw.restricted,
   async (req, res, next) => {
     const user = req.user;
     const addedClass = req.body;
     const role = req.decodedToken.role_name;
-
     try {
       if (role !== 1) {
         res
