@@ -83,6 +83,7 @@ router.get(
 );
 
 // Allow an Instructor to edit a class they've created
+// ✔️
 router.put(
   "/:id/class/:classId",
   mw.checkUserId,
@@ -96,6 +97,27 @@ router.put(
       })
       .catch((err) => {
         err.message = "Server failed to change the class";
+        next(err);
+      });
+  }
+);
+
+router.delete(
+  "/:id/class/:classId",
+  mw.checkUserId,
+  mw.restricted,
+  (req, res, next) => {
+    const { classId } = req.params;
+    Classes.deleteClass(classId)
+      .then((count) => {
+        if (count === 1) {
+          res.status(204).json({ message: "Class has been deleted" });
+        } else {
+          res.status(404).json({ message: "Class not found" });
+        }
+      })
+      .catch((err) => {
+        err.message = "Server failed to delete the class";
         next(err);
       });
   }
