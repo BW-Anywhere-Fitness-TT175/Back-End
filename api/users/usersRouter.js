@@ -10,6 +10,7 @@ router.get("/", (req, res, next) => {
   res.status(200).json({ users: "endpoint up" });
 });
 
+// ✔️
 router.get("/:id", mw.checkUserId, mw.restricted, (req, res, next) => {
   try {
     const user = req.user;
@@ -20,6 +21,7 @@ router.get("/:id", mw.checkUserId, mw.restricted, (req, res, next) => {
   }
 });
 
+// ✔️
 router.put("/:id", mw.restricted, async (req, res, next) => {
   const { id } = req.params;
   const changes = req.body;
@@ -37,6 +39,7 @@ router.put("/:id", mw.restricted, async (req, res, next) => {
 });
 
 // NOTE Allows a User to add a new class to the database
+// ✔️
 router.post(
   "/:id/class",
   mw.checkUserId,
@@ -60,6 +63,8 @@ router.post(
   }
 );
 
+
+// ✔️
 router.post(
   "/register",
   mw.checkRegBody,
@@ -78,6 +83,7 @@ router.post(
   }
 );
 
+// ✔️
 router.post(
   "/login",
   mw.checkLoginBody,
