@@ -80,16 +80,7 @@ router.post(
       const hash = bcrypt.hashSync(credentials.password, 10);
       credentials.password = hash;
       const user = await User.addUser(credentials);
-      res.status(201).json({
-        message: "User registered successfully!",
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          phone_number: user.phone_number,
-          role: user.role_id,
-        },
-      });
+      res.status(201).json({ message: "User registered successfully!" });
     } catch (err) {
       err.message = "Server failed to register user";
       next(err);
