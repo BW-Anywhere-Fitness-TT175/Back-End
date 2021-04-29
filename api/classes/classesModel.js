@@ -4,6 +4,7 @@ const db = require("../../data/dbConfig.js");
 function getClasses() {
   return db
     .select(
+      "c.id",
       "c.class_name as class name",
       "cc.cat_name as class type",
       "c.start_time as start time",
@@ -53,11 +54,11 @@ async function addClass(newClass) {
 
 // NOTE edits a class that is already available and returns it
 // PUT /api/users/:id/classes/:classId
-function editClass(id, changedClass) {
-  return db("classes")
+async function editClass(id, changedClass) {
+  const editClass = await db("classes")
     .where({ "classes.id": id })
-    .updated(changedClass)
-    .first();
+    .update(changedClass);
+  return getClassById(editClass);
 }
 
 // NOTE deletes a class

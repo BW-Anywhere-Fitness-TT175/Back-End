@@ -64,16 +64,15 @@ router.post(
 );
 
 // Allow an Instructor to see a specific class they've created
+// ✔️
 router.get(
   "/:id/class/:classId",
   mw.checkUserId,
   mw.restricted,
   (req, res, next) => {
     const { classId } = req.params;
-    const { id } = req.params;
     Classes.getClassById(classId)
       .then(([retClass]) => {
-        console.log(retClass);
         res.status(200).json(retClass);
       })
       .catch((err) => {
@@ -84,7 +83,23 @@ router.get(
 );
 
 // Allow an Instructor to edit a class they've created
-router.put("");
+router.put(
+  "/:id/class/:classId",
+  mw.checkUserId,
+  mw.restricted,
+  (req, res, next) => {
+    const { classId } = req.params;
+    const changes = req.body;
+    Classes.editClass(classId, changes)
+      .then((changedClass) => {
+        res.status(201).json(changedClass);
+      })
+      .catch((err) => {
+        err.message = "Server failed to change the class";
+        next(err);
+      });
+  }
+);
 
 // ✔️
 router.post(
