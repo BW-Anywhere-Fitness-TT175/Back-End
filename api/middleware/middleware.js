@@ -45,7 +45,7 @@ function checkRegBody(req, res, next) {
       .status(400)
       .json({ message: "password length cannot be greater than 10 chars" });
   } else if (!req.body.name) {
-    res.status(400).json({ message: "must provide first and last name!" });
+    res.status(400).json({ message: "must provide name!" });
   } else if (!req.body.phone_number) {
     res
       .status(400)
