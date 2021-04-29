@@ -34,7 +34,6 @@ function getClassById(id) {
       "c.intensity_level as intensity",
       "c.location",
       "c.max_class_size as class size",
-      "c.registered_students as number of registrants",
       "u.name as instructor",
       "cc.cat_name"
     )
