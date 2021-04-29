@@ -96,6 +96,8 @@ function checkLoginBody(req, res, next) {
   }
 }
 
+function checkAddClassBody(req, res, next) {}
+
 module.exports = {
   checkUserId,
   checkRegBody,

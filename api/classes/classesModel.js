@@ -22,8 +22,8 @@ function getClasses() {
 
 // NOTE return a specific class
 // GET /api/classes/:id
-function getClassById(id) {
-  return db
+async function getClassById(id) {
+  const [newClass] = await db
     .select(
       "c.id",
       "c.class_name as class name",
@@ -35,12 +35,20 @@ function getClassById(id) {
       "c.location",
       "c.max_class_size as class size",
       "c.registered_students as number of registrants",
-      "u.name as instructor"
+      "u.name as instructor",
+      "cc.cat_name"
     )
     .from("classes as c")
     .where({ "c.id": id })
     .join("class_categories as cc", "c.category_id", "=", "cc.id")
     .join("users as u", "u.id", "=", "c.instructor_id");
+  return {
+    ...newClass,
+    number_of_registrants:
+      newClass.classes.registered_students === null
+        ? 0
+        : newClass.classes.registered_students,
+  };
 }
 
 // NOTE add a new class and return it
